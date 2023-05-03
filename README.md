@@ -1,3 +1,4 @@
 # Lista01
 
-Maurício Alexandre Martins da Costa Cruz
+Integrantes:
+  - Maurício Alexandre Martins da Costa Cruz
