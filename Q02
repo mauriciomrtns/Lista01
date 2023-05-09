@@ -1,0 +1,7 @@
+Q02
+
+p;          //Resultado: ffe, pois é o endereço da variável i, armazenado no ponteiro p
+*p+2;       //Resultado: 7, pois é a desreferenciação de p somado a 2
+**&p;       //Resultado: 5, pois é a desreferenciação de p, ou seja, o valor de i
+3**p;       //Resultado: 15, pois é o produto entre a desreferenciação de p (5) e 3 
+**&p+4;     //Resultado: 9, pois será a desreferenciação de p (5) somado a 4
