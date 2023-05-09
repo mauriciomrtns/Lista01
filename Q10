@@ -1,0 +1,45 @@
+Q10
+
+//10) A respostas correspondem, apesar do tamanho da variável int suposto pela questão ser diferente
+
+#include <stdio.h>
+
+int main ()
+{
+    int vetInt[4] = {};
+    char vetChar[4] = {};
+    double vetDoub[4] = {};
+    float vetFlo[4] = {};
+
+    /* (int) */
+    int i;
+    for(i=0; i<3; i++)
+    {
+        printf("%x ",(vetChar+i));
+    }
+    printf("\tTamanho de um char: %X\n", sizeof(char));
+
+    /* (int) */
+    for(i=0; i<3; i++)
+    {
+        printf("%x ",vetInt+i);
+    }
+    printf("\tTamanho de um int: %X\n", sizeof(int));
+
+    /* (float) */
+    for(i=0; i<3; i++)
+    {
+        printf("%x ",vetFlo+i);
+    }
+    printf("\tTamanho de um float: %X\n", sizeof(float));
+
+    /* (double) */
+    for(i=0; i<3; i++)
+    {
+        printf("%x ",vetDoub+i);
+    }
+    printf("\tTamanho de um double: %X", sizeof(double));
+
+
+    return 0;
+}
