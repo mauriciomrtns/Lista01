@@ -1,0 +1,119 @@
+Q18
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void ler(int a, int b, float **M);
+void setMat(int a, int b, float **M);
+void imprimir(int a, int b, float **M);
+void prod(int rowA, int colA, int colB, float **A, float **B, float **C);
+
+int main ()
+{
+    int LiA, ColA, LiB, ColB;
+    float **x, **y, **z;
+
+    //Verifica se as condições necessárias para realizar a multiplicação foram cumpridas
+    do
+    {
+        printf("No de linhas da matriz A(>0): ");
+        scanf("%d", &LiA);
+        printf("No de colunas da matriz A(>0): ");
+        scanf("%d", &ColA);
+        printf("No de linhas da matriz B(>0): ");
+        scanf("%d", &LiB);
+        printf("No de colunas da matriz B(>0): ");
+        scanf("%d", &ColB);
+    }
+    while(ColA != LiB || LiA < 1 ||
+            ColA <  1 || LiB < 1 || ColB < 1);
+
+    x = malloc(LiA * sizeof(float*));
+
+    for(int i = 0; i < LiA; i++)
+    {
+        *(x+i) = malloc(ColA * sizeof(float));
+
+    }
+
+    y = malloc(LiB * sizeof(float*));
+
+    for(int i = 0; i < LiB; i++)
+    {
+        *(y+i) = malloc(ColB * sizeof(float));
+    }
+
+    z = malloc(LiA * sizeof(float*));
+
+    for(int i = 0; i < LiA; i++)
+    {
+        *(z+i) = malloc(ColB * sizeof(float));
+    }
+
+    printf("\nA(%dx%d):", LiA, ColA);
+    ler(LiA, ColA, x);
+    printf("\nB(%dx%d):", LiB, ColB);
+    ler(LiB, ColB, y);
+    setMat(LiA, ColB, z);
+    printf("\nA(%dx%d):\n", LiA, ColA);
+    imprimir(LiA, ColA, x);
+    printf("\nB(%dx%d):\n", LiB, ColB);
+    imprimir(LiB, ColB, y);
+    prod(LiA, ColA, ColB, x, y, z);
+    printf("\nC(%dx%d) [A.B]:\n", LiA, ColB);
+    imprimir(LiA, ColB, z);
+
+    return 0;
+}
+
+void ler(int a, int b, float **M)
+{
+    printf("\n");
+    for(int i = 0; i < a; i++)
+    {
+        for(int j = 0; j < b; j++)
+        {
+            printf("[%d][%d]: ", i+1, j+1);
+            scanf("%f", &*(*(M+i)+j));
+        }
+    }
+}
+
+void setMat(int a, int b, float **M)
+{
+    int i, j;
+    for(i = 0; i < a; i++)
+    {
+        for(j = 0; j < b; j++)
+        {
+            *(*(M+i)+j) = 0.0;
+        }
+    }
+}
+
+void imprimir(int a, int b, float **M)
+{
+    for(int i = 0; i < a; i++)
+    {
+        for(int j = 0; j < b; j++)
+        {
+            printf("%.1f\t", *(*(M+i)+j));
+        }
+        printf("\n");
+    }
+}
+
+void prod(int rowA, int colA, int colB, float **A, float **B, float **C)
+{
+    int i, j, k;
+    for(i = 0; i < rowA; i++)
+    {
+        for(j = 0; j < colB; j++)
+        {
+            for(k = 0; k < colA; k++)
+            {
+                *(*(C+i)+j) += *(*(A+i)+k) * *(*(B+k)+j);
+            }
+        }
+    }
+}
