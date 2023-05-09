@@ -1,0 +1,75 @@
+Q12
+
+/*Diferentemente dos ponteiros comuns, os ponteiros para função armazenam endereços de áreas de código.
+  Neste caso, o ponteiro armazena o endereço de uma determinada função*/
+  
+#include <stdio.h>
+
+void saque(int a, int *b);
+
+int main ()
+{
+    /*O código a seguir busca simular um saque em um caixa eletrônico. Um valor inteiro (maior que 1 e diferente de 3)
+    é inserido e o código calcula qual é o menor número de notas possível para sacá-lo.*/
+
+    //Array com as cédulas disponíveis
+    int ced[] = {200, 100, 50, 20, 10, 5, 2};
+    //Variável que receberá o valor digitado
+    int valor;
+    //Ponteiro para a função saque
+    void (*p) (int, int) = saque;
+
+    /*Leitura do valor que será "sacado"
+      A leitura só será realizada quando
+      o valor estiver nos padrões desejados*/
+    do
+    {
+        printf("Digite um valor inteiro (R$): ");
+        scanf("%d", &valor);
+    }
+    while(valor <= 1 || valor == 3);
+
+    /*Chamada da função "saque", passando como parâmetros o valor a ser
+    sacado e o array contendo as cédulas disponíveis*/
+    (*p)(valor, &ced);
+
+    return 0;
+}
+
+//Função saque
+void saque(int a, int *b)
+{
+    //Array contador: conta a quantidade de cédulas de cada valor
+    int qtd[7] = {0};
+    for(int i = 0; i < 7; i++)
+    {
+        //Testa se o valor digitado é maior ou igual ao valor da cédula
+        if(a >= *(b + i))
+        {
+            /*Se sim, o contador de cédulas do respectivo valor recebe o quociente da di-
+              visão entre o valor desejado e o valor da cédula. Por se tratar de uma di-
+              visão inteira, o quociente mostrará o máximo de cédulas possível daquele
+              valor*/
+            *(qtd + i) = a / *(b + i);
+            /*A variável valor é atualizada, visto que já ocorreu um "saque do valor an-
+            terior. Essa atualização é a quantidade de cédulas que podem ser sacadas ve-
+            zes o valor da cédula*/
+            a -= *(qtd + i) * *(b + i);
+
+            /*Entretanto, se restar um valor igual a 1 ou igual a 3, não será possível
+            retirá-lo.*/
+            if(a == 1 || a == 3)
+            {
+                /*Dessa forma, uma cédula do valor anterior (maior) é descartada do saque
+                e o seu valor é reposto no cálculo*/
+                (*(qtd + i))--;
+                a += *(b + i);
+            }
+        }
+    }
+    //Impressão da quantidade de células de cada valor
+    for(int i = 0; i < 7; i++)
+    {
+        printf("Notas de %d: %d\n", b[i], qtd[i]);
+    }
+}
