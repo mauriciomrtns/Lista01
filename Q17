@@ -1,0 +1,60 @@
+Q17
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void ler(int a, float *b);
+void imprimir(int a, float *b);
+void soma(int a, float *b, float *c, float *d);
+
+int main ()
+{
+    int n;
+    float *x, *y, *z;
+    do{
+        printf("Digite o tamanho dos vetores: ");
+        scanf("%d", &n);
+    }while(n < 1);
+
+    x = malloc(n * sizeof(float));
+    y = malloc(n * sizeof(float));
+    z = malloc(n * sizeof(float));
+
+    printf("\nVetor 1: ");
+    ler(n, x);
+    printf("\nVetor 2: ");
+    ler(n, y);
+    imprimir(n, x);
+    imprimir(n, y);
+    soma(n, x, y, z);
+
+    /*for(int i = 0; i < n; i++){
+        printf("%do numero: ", i+1);
+        scanf("%f", &*(x + i));
+    }*/
+
+    return 0;
+}
+
+void ler(int a, float *b){
+    printf("\n");
+    for(int i = 0; i < a; i++){
+        printf("[%d]: ", i+1);
+        scanf("%f", &*(b + i));
+    }
+}
+
+void imprimir(int a, float *b){
+    printf("\nFator: ");
+    for(int i = 0; i < a; i++){
+        printf("| %.1f", *(b + i));
+    }   printf("|");
+}
+
+void soma(int a, float *b, float *c, float *d){
+    printf("\nSoma:  ");
+    for(int i = 0; i < a; i++){
+        *(d + i) = *(b + i) + *(c + i);
+        printf("| %.1f", *(d + i));
+    }   printf("|");
+}
