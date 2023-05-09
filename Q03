@@ -1,0 +1,10 @@
+Q03
+
+p = i;
+q = &j;
+p = &*&i;
+i = (*&)j;        //Ilegal
+i = *&j;
+i = *&*&j;
+q = *p;
+i = (*p)++ + *q;  //Ilegal
