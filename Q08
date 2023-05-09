@@ -1,0 +1,5 @@
+Q08
+
+//Imprimem em tela, respectivamente, a desreferenciação de cada endereço do array
+(o valor armazenado em cada endereço do array) e o local da memória onde está armazenado
+cada elemento do array
