@@ -1,0 +1,10 @@
+Q07
+
+p = mat+1;        //Válida, pois o ponteiro p recebe o endereço de mat (primeiro elemento do vetor) incrementado, ou seja, o endereço
+                    do próximo elemento. Portanto, é válido.
+p = mat++;        //Inválida, pois, neste caso, o que acontece é que p recebe o endereço de mat e, logo depois, mat é incrementado, 
+                    o que não é uma operação válida
+p = ++mat;        //Inválida, pelo mesmo motivo da anterior. Entretanto, neste caso, o incremento (operação inválida) occore antes 
+                    de p receber o valor de mat
+x = (*mat)++;     //Válida, pois a variável x recebe o valor do primeiro elemento do vetor mat, que logo depois é incrementado, o
+                    que não é relevante para a variável x.
