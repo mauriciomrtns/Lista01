@@ -1,0 +1,10 @@
+Q11
+
+aloha[2] = value;           //Válida
+scanf("%f", &aloha);        //Válida
+aloha = value;              //Inválida, pois não se pode atribuir um valor float a um endereço
+printf("%f", aloha);        //Válida
+coisas[4][4] = aloha[3];    //Válida
+coisas[5] = aloha;          //Inválida, pois não se pode atribuir a uma variável float um endereço de memória
+pf = value;                 //Inválida, pois um ponteiro deve receber um endereço de memória, em vez de um valor 
+pf = aloha;                 //Válida
